@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register | Report & Resolve</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --brand-purple: #3c1053;
+      --frost-bg: rgba(255,255,255,0.9);
+      --frost-border: rgba(255,255,255,0.4);
+    }
+
+    body {
+      margin: 0; padding: 0;
+      min-height: 100vh;
+      background: url('picture/background.png') no-repeat center center fixed;
+      background-size: cover;
+      display: flex; flex-direction: column;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .register-box {
+      width: 100%; max-width: 500px;
+      background: var(--frost-bg);
+      border: 1px solid var(--frost-border);
+      border-radius: .5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+      animation: slideIn 0.8s ease-out both;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0);      }
+    }
+
+    .register-box h4 {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #333;
+    }
+    .btn-register {
+      background-color: var(--brand-purple);
+      border: 1px solid var(--brand-purple);
+      color: #fff;
+      transition: background-color .2s, color .2s;
+    }
+    .btn-register:hover,
+    .btn-register:focus {
+      background-color: #fff;
+      color: var(--brand-purple);
+    }
+    .register-box a {
+      color: var(--brand-purple);
+      transition: color .2s;
+    }
+    .register-box a:hover {
+      color: #33104b;
+      text-decoration: underline;
+    }
+
+    .register-footer {
+      margin-top: 2rem;
+      font-size: .85rem;
+      text-align: center;
+      color: #666;
+      border-top: 2px solid var(--brand-purple);
+      padding-top: 1rem;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    @media (max-width: 576px) {
+      .register-box { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-wrapper">
+    <div class="register-box">
+      <h4>CREATE AN ACCOUNT</h4>
+      <form action="registersuccess.html" method="get">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" id="name" class="form-control" placeholder="e.g. Aina Zahira" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" id="email" class="form-control" placeholder="student@uitm.edu.my" required>
+        </div>
+        <div class="mb-3">
+          <label for="matric" class="form-label">Matric Number</label>
+          <input type="text" id="matric" class="form-control" placeholder="2022123456" required>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" class="form-control" required>
+        </div>
+        <div class="d-grid mb-3">
+          <button type="submit" class="btn btn-register">Register</button>
+        </div>
+
+        <div class="text-center">
+          Already have an account? <a href="index.html">Login here</a>
+        </div>
+      </form>
+
+      <div class="register-footer">
+        &copy; 2025 Report & Resolve | Developed by Nur Addlynn Binti Mohd Asfia – 2023690262
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+

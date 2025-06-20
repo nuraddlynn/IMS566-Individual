@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Complaint List | Report & Resolve</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --brand-purple: #3c1053;
+      --frost-bg: rgba(255,255,255,0.2);
+      --frost-border: rgba(255,255,255,0.4);
+    }
+
+    html, body {
+      margin: 0; padding: 0;
+      height: 100%;
+      background: url('picture/background.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      display: flex; flex-direction: column;
+    }
+
+    .navbar-custom {
+      background: transparent !important;
+    }
+    .navbar-custom .container-fluid {
+      padding: 0 2rem;
+    }
+    .navbar-brand .h5,
+    .nav-link {
+      font-family: 'Orbitron', sans-serif;
+      color: #fff !important;
+      letter-spacing: .5px;
+    }
+    .nav-link {
+      position: relative;
+      padding: .5rem 1rem;
+      transition: color .2s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: 0; left: 10%;
+      width: 0; height: 2px; background: #fff;
+      transition: width .3s ease;
+    }
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .btn-outline-light {
+      color: #fff;
+      border-color: #fff;
+      transition: background .2s, color .2s;
+    }
+    .btn-outline-light:hover {
+      background: #fff; color: var(--brand-purple);
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0);      }
+    }
+
+    .content-wrapper {
+      margin-top: 3rem;
+      flex: 1;
+      padding: 2rem 1rem;
+    }
+
+    .page-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.75rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .table-container {
+      background: var(--frost-bg);
+      border: 1px solid var(--frost-border);
+      border-radius: .5rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+      animation: slideIn 0.8s ease-out both;
+    }
+    .table td:nth-child(5),
+    .table th:nth-child(5) {
+      text-align: center;
+    }
+    .table-container .table th,
+    .table-container .table td {
+      background: transparent !important;
+      color: #fff;
+    }
+    .table-container thead th {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+    }
+    .table-bordered th,
+    .table-bordered td {
+      border: 1px solid #fff !important;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+      background: rgba(255,255,255,0.05) !important;
+    }
+    .table td, .table th {
+      padding: .25rem .5rem;
+    }
+    .table td:first-child,
+    .table th:first-child {
+      width: 3ch;              
+      text-align: center;       
+      font-size: .9rem;       
+    }
+
+    .btn-view, .btn-edit {
+      background: var(--brand-purple);
+      border: 1px solid var(--brand-purple);
+      color: #fff;
+      transition: background .2s, color .2s;
+    }
+    .btn-view:hover, .btn-edit:hover {
+      background: #fff; color: var(--brand-purple);
+    }
+    .btn-trash {
+      background: transparent;
+      border: 1px solid #fff;
+      color: #fff;
+      transition: background .2s, color .2s;
+    }
+    .btn-trash:hover {
+      background: #fff; color: var(--brand-purple);
+    }
+
+    .btn-back {
+      display: inline-block;
+      background: var(--frost-bg);
+      border: 1px solid var(--frost-border);
+      border-radius: .5rem;
+      padding: .5rem 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-back:hover {
+      background: #fff; color: var(--brand-purple);
+    }
+
+    footer {
+      background: rgba(0,0,0,0.6);
+      color: #ccc;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: auto;
+      font-size: .9rem;
+    }
+
+    @media (max-width:576px) {
+      .content-wrapper { padding: 1rem; }
+      .table th, .table td { font-size: .9rem; }
+      .btn-back { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center" href="dashboard.html">
+        <img src="picture/UiTM-Logo.png" alt="UiTM Logo" style="height:40px; margin-right:1rem;">
+        <span class="h5 mb-0">REPORT & RESOLVE</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="addcomplaint.html">Submit A Complaint</a></li>
+          <li class="nav-item"><a class="nav-link" href="complaints.html">My Complaints</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+        </ul>
+        <a class="btn btn-outline-light" href="index.html">Log Out</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container content-wrapper">
+    <h3 class="page-title">MY COMPLAINT LIST</h3>
+
+    <div class="table-container">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered align-middle mb-0">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Complaint Title</th>
+              <th>Category</th>
+              <th>Date Submitted</th>
+              <th>Status</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <th>1</th>
+              <td>Ceiling fan not working</td>
+              <td>Facilities</td>
+              <td>2025-06-01</td>
+              <td><span class="badge bg-warning text-dark">Pending</span></td>
+              <td class="text-center">
+                <a href="complaintdetail1.html" class="btn btn-sm btn-view me-1"><i class="fas fa-eye"></i></a>
+                <a href="editcomplaint1.html" class="btn btn-sm btn-edit me-1"><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-sm btn-trash"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+
+            <tr>
+              <th>2</th>
+              <td>Projector issue</td>
+              <td>Facilities</td>
+              <td>2025-06-02</td>
+              <td><span class="badge bg-success">Resolved</span></td>
+              <td class="text-center">
+                <a href="complaintdetail2.html" class="btn btn-sm btn-view me-1"><i class="fas fa-eye"></i></a>
+                <a href="editcomplaint2.html" class="btn btn-sm btn-edit me-1"><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-sm btn-trash"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+
+            <tr>
+              <th>3</th>
+              <td>Missing sanitary bin</td>
+              <td>Cleanliness</td>
+              <td>2025-06-03</td>
+              <td><span class="badge bg-warning text-dark">Pending</span></td>
+              <td class="text-center">
+                <a href="complaintdetail3.html" class="btn btn-sm btn-view me-1"><i class="fas fa-eye"></i></a>
+                <a href="editcomplaint3.html" class="btn btn-sm btn-edit me-1"><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-sm btn-trash"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+
+            <tr>
+              <th>4</th>
+              <td>Wi-Fi connectivity issue</td>
+              <td>Internet</td>
+              <td>2025-06-04</td>
+              <td><span class="badge bg-success">Resolved</span></td>
+              <td class="text-center">
+                <a href="complaintdetail4.html" class="btn btn-sm btn-view me-1"><i class="fas fa-eye"></i></a>
+                <a href="editcomplaint4.html" class="btn btn-sm btn-edit me-1"><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-sm btn-trash"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+
+            <tr>
+              <th>5</th>
+              <td>Inconsistent staff parking</td>
+              <td>Service</td>
+              <td>2025-06-05</td>
+              <td><span class="badge bg-success">Resolved</span></td>
+              <td class="text-center">
+                <a href="complaintdetail5.html" class="btn btn-sm btn-view me-1"><i class="fas fa-eye"></i></a>
+                <a href="editcomplaint5.html" class="btn btn-sm btn-edit me-1"><i class="fas fa-edit"></i></a>
+                <a href="#" class="btn btn-sm btn-trash"><i class="fas fa-trash"></i></a>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a href="dashboard.html" class="btn-back">Back to Dashboard</a>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Report & Resolve | Developed by Nur Addlynn Binti Mohd Asfia – 2023690262
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
